@@ -1,4 +1,5 @@
 #include "wlr.h"
+#include <f3d/context.h>
 #include <f3d/engine.h>
 #include <f3d/interactor.h>
 #include <f3d/scene.h>
@@ -52,10 +53,9 @@ struct Output {
 };
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-
     f3d::engine::autoloadPlugins();
     f3d::engine engine = f3d::engine::create();
+    engine.getScene().add("models/Hatsune Miku/miku_prefab.dae");
     engine.getInteractor().start();
 
     State *state = new State();
