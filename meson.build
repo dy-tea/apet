@@ -1,15 +1,11 @@
-project(
-  'apet',
-  'cpp',
-  'c'
-)
+project('apet', 'cpp', 'c')
 
 wayland_client = dependency('wayland-client')
 wayland_protocols = dependency('wayland-protocols')
+f3d = dependency('f3d', method: 'cmake', modules: ['f3d::libf3d'])
 
 wl_protocol_dir = wayland_protocols.get_variable('pkgdatadir')
 
-pkg_config = find_program('pkg-config')
 wayland_scanner = find_program('wayland-scanner')
 
 client_protocols = [
@@ -42,10 +38,7 @@ include = include_directories(
   'include',
 )
 
-libs = [
-  wayland_client,
-  wayland_protocols
-]
+libs = [wayland_client, wayland_protocols, f3d]
 
 executable(
   'apet',
@@ -55,5 +48,5 @@ executable(
     headers,
   ],
   include_directories: include,
-  dependencies: libs
+  dependencies: libs,
 )
